@@ -43,6 +43,14 @@ body {
         text-align: right;
     }
 
+.page {
+    display: none;
+}
+
+.page-active {
+    display: block;
+}
+
 .search {
     border-radius: 12px;
     margin-bottom: 200px;
@@ -86,6 +94,102 @@ body {
             text-decoration: none;
         }
         .search__example a:hover { border-color: transparent; }
+
+.platforms {
+    padding: 50px 0;
+}
+    .platforms__toggle {
+        margin: 0 0 50px;
+        padding: 0;
+
+        font-size: 0;
+        line-height: 0;
+        text-align: center;
+    }
+        .platforms__item {
+            border-radius: 5px;
+            display: inline-block;
+            padding: 5px 20px;
+            margin-left: 50px;
+
+            color: #fff;
+            font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 20px;
+            list-style: none;
+
+            background-color: #000;
+
+            cursor: pointer;
+        }
+        .platforms__item:first-child { margin-left: 0; }
+        .platforms__item:hover, .platforms__item_state_active {
+            background: #00b4ff;
+            color: #000;
+        }
+        .platforms__item.platforms__item_amazon {}
+        .platforms__item.platforms__item_heroku {}
+    .platforms__form {
+        display: none;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, .4);
+        margin: auto;
+        padding: 50px;
+        width: 500px;
+    }
+    .platforms__form.platforms__form_amazon {
+        display: block;
+    }
+    .platforms__form.platforms__form_heroku {}
+        .platforms__form input {
+            border: 1px solid #000;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: block;
+            height: 50px;
+            margin-bottom: 10px;
+            outline: none;
+            padding: 0 20px;
+            width: 100%;
+        }
+        .platforms__form button {
+            border: 1px solid #000;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: block;
+            height: 50px;
+            margin: 20px auto 0;
+            padding: 0 10px;
+            width: 50%;
+
+            background: #00b4ff;
+
+            font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+            font-weight: bold;
+
+            color: #fff;
+        }
+
+.technologies {
+    border-radius: 20px;
+    margin: 50px auto;
+    padding: 50px;
+
+    background: rgba(0, 0, 0, .4);
+}
+    .technologies__titles {
+        margin: 0;
+        padding: 0;
+    }
+        .technologies__title {
+            float: left;
+            width: 50%;
+
+            color: #fff;
+            list-style: none;
+        }
+    .technologies__list {}
+        .technologies__item {}
 
 .footer {
     border: 1px solid #4a4a4a;
