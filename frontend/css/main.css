@@ -53,7 +53,7 @@ body {
 
 .search {
     border-radius: 12px;
-    margin-bottom: 200px;
+    margin: 50px 0 200px;
     padding: 40px 40px 30px;
 
     background-color: rgba(0, 0, 0, .13);
@@ -172,13 +172,23 @@ body {
 
 .technologies {
     border-radius: 20px;
-    margin: 50px auto;
+    margin: 50px 180px;
     padding: 50px;
 
     background: rgba(0, 0, 0, .4);
 }
+
+.technologies:after,
+.technologies:before {
+    display: table;
+
+    content: '';
+}
+.technologies:after {
+    clear: both;
+}
     .technologies__titles {
-        margin: 0;
+        margin: 0 0 60px;
         padding: 0;
     }
         .technologies__title {
@@ -186,10 +196,63 @@ body {
             width: 50%;
 
             color: #fff;
+            font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+            font-size: 24px;
             list-style: none;
         }
-    .technologies__list {}
-        .technologies__item {}
+    .technologies__list {
+        float: left;
+        margin: 0 0 20px;
+        padding: 0;
+        width: 50%;
+    }
+        .technologies__item {
+            margin-bottom: 10px;
+
+            color: #fff;
+            font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            list-style: none;
+        }
+            .technologies__toggle {
+                border-radius: 5px;
+                display: inline-block;
+                padding: 5px 20px;
+
+                color: #fff;
+                font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 16px;
+                line-height: 20px;
+                list-style: none;
+
+                background-color: #000;
+
+                cursor: pointer;
+            }
+            .technologies__toggle:hover, .technologies__toggle.technologies__toggle_state_active {
+                background: #00b4ff;
+                color: #fff;
+            }
+    .technologies__submit {
+        clear: both;
+        border: 1px solid #000;
+        border-radius: 5px;
+        box-sizing: border-box;
+        display: block;
+        height: 50px;
+        margin: auto;
+        width: 50%;
+
+        background: #00b4ff;
+
+        font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        line-height: 50px;
+        text-decoration: none;
+        text-align: center;
+
+        color: #fff;
+    }
 
 .footer {
     border: 1px solid #4a4a4a;
