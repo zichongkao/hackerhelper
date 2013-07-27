@@ -46,19 +46,20 @@ app.post('/tech', function (req, res) {
 	global.tech_len = req.body.tech.length;
 });
 
-// page 4 -----------------------------
-app.post('/api', function (req, res) {
-	global.api= req.body.api;
-	console.log(global.api);
-	});
-
-
 function include(arr,obj) {
     return (arr.indexOf(obj) != -1);
 }
 
+
+// page 4 -----------------------------
+app.post('/api', function (req, res) {
+	global.api= req.body.api;
+	console.log(global.api);
+
+
+
 // build page ---------------------------
-app.post('/build', function (req, res) {
+
 //	function puts(error, stdout, stderr ){sys.put(stdout)}
 //	exec("./newinstance.sh",puts);
 	
