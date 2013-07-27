@@ -100,7 +100,21 @@ $(function() {
 
     //Step3 data will go here
     $('.technologies__submit').on('technologiesSelected', function(e, technologies) {
-        console.log(technologies);
+        var payload = {
+			tech: technologies,
+		};
+		console.log(payload);
+		
+		$.ajax({
+			url: "/tech",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			data: JSON.stringify(payload),
+			complete: function (data) {
+				$('#output').html(data.responseText);
+			}
+		});
     })
 
     //Step4 event firing
@@ -124,15 +138,33 @@ $(function() {
 
     //Step4 data will go here
     $('.api__submit').on('apiSelected', function(e, apis) {
-        console.log(apis);
+        var payload = {
+			api: apis,
+		};
+		console.log(payload);
+		
+		$.ajax({
+			url: "/api",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			data: JSON.stringify(payload),
+			complete: function (data) {
+				$('#output').html(data.responseText);
+			}
+		});
     })
 
     //Step5 event firing
     $('.done').on({
         click: function() {
 
-            // ..............
-
+//            $.ajax({
+//				url: "/build",
+//				type: "POST",
+//				complete: function (data) {
+//				$('#output').html(data.responseText);
+//			});
             return false;
         }
     });

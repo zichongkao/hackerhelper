@@ -22,6 +22,8 @@ app.get('/',function(req,res){
 });
 app.listen(port);
 
+
+
 // page 1 ------------------------------
 
 
@@ -45,68 +47,81 @@ app.post('/tech', function (req, res) {
 });
 
 // page 4 -----------------------------
-//app.post('/features', function (req, res) {
-//	console.log(req.body.tech);
-//});
+app.post('/api', function (req, res) {
+	global.api= req.body.api;
+	console.log(global.api);
+	});
+
+
+function include(arr,obj) {
+    return (arr.indexOf(obj) != -1);
+}
 
 // build page ---------------------------
-//app.post('/build', function (req, res) {
-	function puts(error, stdout, stderr ){sys.put(stdout)}
-	exec("./newinstance.sh",puts);
+app.post('/build', function (req, res) {
+//	function puts(error, stdout, stderr ){sys.put(stdout)}
+//	exec("./newinstance.sh",puts);
 	
 //	var tech_array = global.tech
-	for (var i=0; i<global.tech_len; i++ ){
-	    exec("./" + global.tech[i] + ".sh",puts);
+//	for (var i=0; i<global.tech_len; i++ ){
+//	    exec("./" + global.tech[i] + ".sh",puts);
+//	}
+	
+
+
+	//prepare index.html ------------------------------
+
+	// d3
+	if (include(global.api,"d3")) {
+		var d3 = "\n\t<script src=\"http://d3js.org/d3.v3.min.js\" charset=\"utf-8\"></script>"
+		fs.appendFile(__dirname + "/package/index.html", d3, function(err, fd){
+			if(err) {
+				console.log(err);
+			} else {
+				console.log(fd + " d3 tags added successfully.");
+			}
+		});
 	}
-	//});
+	
+	// insert </head> <body>
+	fs.appendFile(__dirname + "/package/index.html", '\n</head>\n<body>\n\
+	\t<h1>Hello World!<h1>', function(err, fd){
+		if(err) {
+			console.log(err);
+		} else {
+			console.log(fd + " /head, body tags added successfully.");
+		}
+	});
 
+    if (include(global.api,"goog")) {
+		// goog analytics boiler plate
+		var goog = " \
+		\n\t<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --> \n\
+		\t<script>\n\
+			\tvar _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];\n\
+			\t(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];\n\
+			\tg.src='//www.google-analytics.com/ga.js';\n\
+			\ts.parentNode.insertBefore(g,s)}(document,'script'));\n\
+		\t</script>"
 
-//prepare index.html ------------------------------
+		fs.appendFile(__dirname + "/package/index.html", goog, function(err, fd){
+			if(err) {
+				console.log(err);
+			} else {
+				console.log(fd + " google analytics snippet added successfully.");
+			}
+		});
+	}
+	
+	// final tags
+	fs.appendFile(__dirname + "/package/index.html", '\n</body>\n</html>', function(err, fd){
+		if(err) {
+			console.log(err);
+		} else {
+			console.log(fd + " end tags added successfully.");
+		}
+	});
 
-// d3 
-var d3 = "\n\t<script src=\"http://d3js.org/d3.v3.min.js\" charset=\"utf-8\"></script>"
-fs.appendFile(__dirname + "/package/index.html", d3, function(err, fd){
-	if(err) {
-        console.log(err);
-    } else {
-        console.log(fd + " d3 tags added successfully.");
-    }
-});
-
-// insert </head> <body>
-fs.appendFile(__dirname + "/package/index.html", '\n</head>\n<body>\n\
-\t<h1>Hello World!<h1>', function(err, fd){
-	if(err) {
-        console.log(err);
-    } else {
-        console.log(fd + " /head, body tags added successfully.");
-    }
-});
-
-
-// goog analytics boilder plate
-var goog = " \
-\n\t<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --> \n\
-\t<script>\n\
-	\tvar _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];\n\
-	\t(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];\n\
-	\tg.src='//www.google-analytics.com/ga.js';\n\
-	\ts.parentNode.insertBefore(g,s)}(document,'script'));\n\
-\t</script>"
-
-fs.appendFile(__dirname + "/package/index.html", goog, function(err, fd){
-	if(err) {
-        console.log(err);
-    } else {
-        console.log(fd + " google analytics snippet added successfully.");
-    }
-});
-
-// final tags
-fs.appendFile(__dirname + "/package/index.html", '\n</body>\n</html>', function(err, fd){
-	if(err) {
-        console.log(err);
-    } else {
-        console.log(fd + " end tags added successfully.");
-    }
+	// scp package over to the new server
+    //exec("scp -r package/ user@server:~/",puts);
 });
