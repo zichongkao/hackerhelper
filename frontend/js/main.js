@@ -39,7 +39,21 @@ $(function() {
 
     //Step1 data will go here
     $('form[name="domainSearch"]').on('domainSelected', function(e, domain) {
-        console.log(domain);
+		var payload = {
+			name: domain
+		};
+		console.log(payload);
+		
+		$.ajax({
+			url: "/domain",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			data: JSON.stringify(payload),
+			complete: function (data) {
+				$('#output').html(data.responseText);
+			}
+		});
     });
 
     //Toggling server forms
@@ -69,8 +83,24 @@ $(function() {
 
     //Step2 data will go here
     $('form[data-form="amazon"], form[data-form="heroku"]').on('platformSelected', function(e, platformName, formData) {
-        console.log(platformName);
-        console.log(formData);
+		var payload = {
+			platform: platformName,
+			servername: formData.serverName,
+			email: formData.email,
+			password: formData.password
+		};
+		console.log(payload);
+		
+		$.ajax({
+			url: "/platform",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			data: JSON.stringify(payload),
+			complete: function (data) {
+				$('#output').html(data.responseText);
+			}
+		});
     })
 
     $('.technologies__toggle').on({
