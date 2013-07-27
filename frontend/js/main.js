@@ -39,21 +39,7 @@ $(function() {
 
     //Step1 data will go here
     $('form[name="domainSearch"]').on('domainSelected', function(e, domain) {
-		var payload = {
-			name: domain
-		};
-		console.log(payload);
-		
-		$.ajax({
-			url: "/domain",
-			type: "POST",
-			contentType: "application/json",
-			processData: false,
-			data: JSON.stringify(payload),
-			complete: function (data) {
-				$('#output').html(data.responseText);
-			}
-		});
+        console.log(domain);
     });
 
     //Toggling server forms
@@ -83,24 +69,8 @@ $(function() {
 
     //Step2 data will go here
     $('form[data-form="amazon"], form[data-form="heroku"]').on('platformSelected', function(e, platformName, formData) {
-		var payload = {
-			platform: platformName,
-			servername: formData.serverName,
-			email: formData.email,
-			password: formData.password
-		};
-		console.log(payload);
-		
-		$.ajax({
-			url: "/platform",
-			type: "POST",
-			contentType: "application/json",
-			processData: false,
-			data: JSON.stringify(payload),
-			complete: function (data) {
-				$('#output').html(data.responseText);
-			}
-		});
+        console.log(platformName);
+        console.log(formData);
     })
 
     $('.technologies__toggle').on({
@@ -130,21 +100,7 @@ $(function() {
 
     //Step3 data will go here
     $('.technologies__submit').on('technologiesSelected', function(e, technologies) {
-		var payload = {
-			tech: technologies,
-		};
-		console.log(payload);
-		
-		$.ajax({
-			url: "/tech",
-			type: "POST",
-			contentType: "application/json",
-			processData: false,
-			data: JSON.stringify(payload),
-			complete: function (data) {
-				$('#output').html(data.responseText);
-			}
-		});
+        console.log(technologies);
     })
 
     //Step4 event firing
