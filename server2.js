@@ -4,6 +4,8 @@ var util = require('util'),
 	nib = require('nib'),
     fs = require('fs'),
 	events = require('events'),
+	sys = require('sys'),
+	exec = require('child_process').exec;
     port = 8080;
 
 var app = module.exports = express();
@@ -22,26 +24,35 @@ app.listen(port);
 
 // page 1 ------------------------------
 
+
 app.post('/domain', function (req, res) {
-    console.log(req.body.name); 
+    var domname = req.body.name; 
 });
+
+
 
 // page 2 ------------------------------
 app.post('/platform', function (req, res) {
-    console.log(req.body.platform);
-	console.log(req.body.email);
-	console.log(req.body.password);
-	console.log(req.body.servername);
+	
+	var platform = req.body.platform;
+	var email = req.body.email;
+	var password = req.body.password;
+	var servername = req.body.servername;
 });
 
-
+// page 3 ------------------------------
+app.post('/tech', function (req, res) {
+	console.log(req.body.tech)
+});
+//	function puts(error, stdout, stderr ){sys.put(stdout)}
+//	exec("./buildserv.sh",puts)
 
 
 // page 4
 //prepare index.html --------------------
 
 // d3 
-var d3 = "<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>"
+var d3 = "<script src=\"http://d3js.org/d3.v3.min.js\" charset=\"utf-8\"></script>"
 fs.appendFile(__dirname + "/package/index.html", d3, function(err, fd){
 	if(err) {
         console.log(err);
