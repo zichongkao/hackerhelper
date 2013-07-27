@@ -26,41 +26,45 @@ app.listen(port);
 
 
 app.post('/domain', function (req, res) {
-    var domname = req.body.name; 
+    global.domname = req.body.name; 
 });
-
-
 
 // page 2 ------------------------------
 app.post('/platform', function (req, res) {
 	
-	var platform = req.body.platform;
-	var email = req.body.email;
-	var password = req.body.password;
-	var servername = req.body.servername;
+	global.platform = req.body.platform;
+	global.email = req.body.email;
+	global.password = req.body.password;
+	global.servername = req.body.servername;
 });
 
 // page 3 ------------------------------
 app.post('/tech', function (req, res) {
-	console.log(req.body.tech)
+	global.tech = req.body.tech;
+	global.tech_len = req.body.tech.length;
 });
 
 // page 4 -----------------------------
-app.post('/features', function (req, res) {
-	console.log(req.body.tech)
-});
+//app.post('/features', function (req, res) {
+//	console.log(req.body.tech);
+//});
 
 // build page ---------------------------
-app.post('/build', function (req, res) {
+//app.post('/build', function (req, res) {
 	function puts(error, stdout, stderr ){sys.put(stdout)}
-	exec("./buildserv.sh",puts);
-});
+	exec("./newinstance.sh",puts);
+	
+//	var tech_array = global.tech
+	for (var i=0; i<global.tech_len; i++ ){
+	    exec("./" + global.tech[i] + ".sh",puts);
+	}
+	//});
 
 
 //prepare index.html ------------------------------
 
 // d3 
-var d3 = "<script src=\"http://d3js.org/d3.v3.min.js\" charset=\"utf-8\"></script>"
+var d3 = "\n\t<script src=\"http://d3js.org/d3.v3.min.js\" charset=\"utf-8\"></script>"
 fs.appendFile(__dirname + "/package/index.html", d3, function(err, fd){
 	if(err) {
         console.log(err);
@@ -70,7 +74,8 @@ fs.appendFile(__dirname + "/package/index.html", d3, function(err, fd){
 });
 
 // insert </head> <body>
-fs.appendFile(__dirname + "/package/index.html", '\n</head>\n<body>', function(err, fd){
+fs.appendFile(__dirname + "/package/index.html", '\n</head>\n<body>\n\
+\t<h1>Hello World!<h1>', function(err, fd){
 	if(err) {
         console.log(err);
     } else {
@@ -81,13 +86,13 @@ fs.appendFile(__dirname + "/package/index.html", '\n</head>\n<body>', function(e
 
 // goog analytics boilder plate
 var goog = " \
-\n<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --> \n\
-<script>\n\
-	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];\n\
-	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];\n\
-	g.src='//www.google-analytics.com/ga.js';\n\
-	s.parentNode.insertBefore(g,s)}(document,'script'));\n\
-</script>"
+\n\t<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --> \n\
+\t<script>\n\
+	\tvar _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];\n\
+	\t(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];\n\
+	\tg.src='//www.google-analytics.com/ga.js';\n\
+	\ts.parentNode.insertBefore(g,s)}(document,'script'));\n\
+\t</script>"
 
 fs.appendFile(__dirname + "/package/index.html", goog, function(err, fd){
 	if(err) {
