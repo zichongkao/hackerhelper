@@ -60,7 +60,7 @@ app.post('/api', function (req, res) {
 
 // build page ---------------------------
 
-	function puts(error, stdout, stderr ){sys.put(stdout)}
+	function puts(error, stdout, stderr ){sys.puts(stdout)}
 	exec("./newinstance.sh",puts);
 	
 //	var tech_array = global.tech
