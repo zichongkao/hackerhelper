@@ -55,6 +55,7 @@ function include(arr,obj) {
 app.post('/api', function (req, res) {
 	global.api= req.body.api;
 	console.log(global.api);
+	res.send('{ok2}');
 
 
 
