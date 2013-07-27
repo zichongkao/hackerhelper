@@ -3,6 +3,15 @@ $(function() {
     var page = 1,
         pages = $('.page');
 
+    $('.search__example a').on({
+        click: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            $(this).parents('form').find('#search').val($(this).html()).focus();
+        }
+    });
+
     function nextPage() {
         if (page <= pages.length) {
             pages.each(function () {
@@ -64,6 +73,31 @@ $(function() {
         console.log(formData);
     })
 
+    $('.technologies__toggle').on({
+        click: function() {
+            $(this).toggleClass('technologies__toggle_state_active');
+        }
+    });
 
+    //Step3 event firing
+    $('.technologies__submit').on({
+        click: function() {
+            var parent = $(this).parent(),
+                selectedTechnologies = parent.find('ul span.technologies__toggle_state_active'),
+                techs = [];
 
+            selectedTechnologies.each(function() {
+                techs.push($(this).html().replace(" ", "").toLowerCase());
+            })
+
+            $(this).trigger('technologiesSelected', [techs]);
+
+            return false;
+        }
+    });
+
+    //Step3 data will go here
+    $('.technologies__submit').on('technologiesSelected', function(e, technologies) {
+        console.log(technologies);
+    })
 });
