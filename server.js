@@ -73,7 +73,7 @@ app.post('/api', function (req, res) {
 	//prepare index.html ------------------------------
 
 	// d3
-	if (include(global.api,"d3")) {
+	if (include(global.api,"D3")) {
 		var d3 = "\n\t<script src=\"http://d3js.org/d3.v3.min.js\" charset=\"utf-8\"></script>"
 		fs.appendFile(__dirname + "/package/index.html", d3, function(err, fd){
 			if(err) {
@@ -94,7 +94,7 @@ app.post('/api', function (req, res) {
 		}
 	});
 
-    if (include(global.api,"goog")) {
+    if (include(global.api,"Google Analytics")) {
 		// goog analytics boiler plate
 		var goog = " \
 		\n\t<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. --> \n\
