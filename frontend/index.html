@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/main.css" />
 
     <script src="js/vendor/jquery-1.9.1.min.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
 
@@ -21,31 +22,70 @@
             <span class="header__slogan">Create fast</span>
         </header>
 
-        <form class="search">
-            <input class="search__input" id="search" type="text" title="Enter your domain" placeholder="Enter your domain" tabindex="1" />
-            <div class="search__example">
-                Example: <a href="#">domain.com</a>
+        <!--Step1-->
+        <div class="page page-active" data-page="1">
+            <form name="domainSearch" class="search">
+                <input class="search__input" id="search" type="text" title="Enter your domain" placeholder="Step1" tabindex="1" />
+                <div class="search__example">
+                    Example: <a href="#">domain.com</a>
+                </div>
+            </form>
+        </div>
+        <!--Step1-ends-->
+
+        <!--Step2-->
+        <div class="page" data-page="2">
+            <div class="platforms">
+                <ul class="platforms__toggle">
+                    <li class="platforms__item platforms__item_amazon platforms__item_state_active  " data-item="amazon">Amazon</li>
+                    <li class="platforms__item platforms__item_heroku" data-item="heroku">Heroku</li>
+                </ul>
+                <form class="platforms__form platforms__form_amazon" data-form="amazon">
+                    <input type="text" name="serverName" placeholder="Amazon Server Name">
+                    <input type="email" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
+                    <button type="submit" name="amazon">Submit</button>
+                </form>
+                <form class="platforms__form platforms__form_heroku" data-form="heroku">
+                    <input type="text" name="serverName" placeholder="Heroku Server Name">
+                    <input type="email" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
+                    <button type="submit" name="heroku">Submit</button>
+                </form>
             </div>
-        </form>
+        </div>
+        <!--Step2-ends-->
+
+        <!--Step3-->
+        <div class="page" data-page="3">
+            <div class="technologies">
+                <ul class="technologies__titles">
+                    <li class="technologies__title">Back-end</li>
+                    <li class="technologies__title">Front-end</li>
+                </ul>
+                <ul class="technologies__list">
+                    <li class="technologies__item">Pyton</li>
+                    <li class="technologies__item">PHP</li>
+                    <li class="technologies__item">...</li>
+                </ul>
+                <ul class="technologies__list">
+                    <li class="technologies__item">jQuery</li>
+                    <li class="technologies__item">Angular JS</li>
+                    <li class="technologies__item">Backbone JS</li>
+                </ul>
+            </div>
+        </div>
+        <!--Step3-ends-->
 
         <div class="layout__fake-footer"></div>
     </div>
 
     <footer class="footer">
         <div class="footer__inner">
-           <!-- <div class="twitter">
-                <div class="twitter__message">It's amazing</div>
-                <div class="twitter__date">Posted 2 Days Ago</div>
-            </div> -->
             <aside class="footer__sidebar">
                 <a class="footer__logo" href="#"><img src="images/logo.png" title="Hacker Helper" alt="Hacker Helper" /></a>
-               <!-- <div class="footer__slogan">Create fast</div> -->
             </aside>
         </div>
     </footer>
-    
-<div class="redblock"><p> Choose PaaS</p></div>
-
-
 </body>
 </html>
