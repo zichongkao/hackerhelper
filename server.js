@@ -61,7 +61,7 @@ app.post('/api', function (req, res) {
 // build page ---------------------------
 
 	function puts(error, stdout, stderr ){sys.puts(stdout)}
-	exec("./newinstance.sh",puts);
+	exec("bash newinstance.sh",puts);
 	
 //	var tech_array = global.tech
 //	for (var i=0; i<global.tech_len; i++ ){
