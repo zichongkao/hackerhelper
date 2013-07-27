@@ -128,6 +128,20 @@ $(function() {
 
     //Step3 data will go here
     $('.technologies__submit').on('technologiesSelected', function(e, technologies) {
-        console.log(technologies);
+		var payload = {
+			tech: technologies,
+		};
+		console.log(payload);
+		
+		$.ajax({
+			url: "/tech",
+			type: "POST",
+			contentType: "application/json",
+			processData: false,
+			data: JSON.stringify(payload),
+			complete: function (data) {
+				$('#output').html(data.responseText);
+			}
+		});
     })
 });
