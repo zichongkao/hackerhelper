@@ -120,6 +120,8 @@ $(function() {
                 techs.push($(this).html().replace(" ", "").toLowerCase());
             })
 
+            nextPage();
+
             $(this).trigger('technologiesSelected', [techs]);
 
             return false;
@@ -144,4 +146,39 @@ $(function() {
 			}
 		});
     })
+
+    //Step4 event firing
+    $('.api__submit').on({
+        click: function() {
+            var parent = $(this).parent(),
+                selectedApi = parent.find('ul span.technologies__toggle_state_active'),
+                api = [];
+
+            selectedApi.each(function() {
+                api.push($(this).html().replace(" ", "").toLowerCase());
+            })
+
+            nextPage();
+
+            $(this).trigger('apiSelected', [api]);
+
+            return false;
+        }
+    });
+
+    //Step4 data will go here
+    $('.api__submit').on('apiSelected', function(e, apis) {
+        console.log(apis);
+    })
+
+    //Step5 event firing
+    $('.done').on({
+        click: function() {
+
+            // ..............
+
+            return false;
+        }
+    });
+
 });

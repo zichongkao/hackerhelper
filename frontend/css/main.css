@@ -233,7 +233,8 @@ body {
                 background: #00b4ff;
                 color: #fff;
             }
-    .technologies__submit {
+    .technologies__submit,
+    .api__submit {
         clear: both;
         border: 1px solid #000;
         border-radius: 5px;
@@ -253,6 +254,27 @@ body {
 
         color: #fff;
     }
+
+.done {
+    clear: both;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: block;
+    height: 50px;
+    margin: 50px auto;
+    width: 300px;
+
+    background: #00b4ff;
+
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    line-height: 50px;
+    text-decoration: none;
+    text-align: center;
+
+    color: #fff;
+}
 
 .footer {
     border: 1px solid #4a4a4a;
