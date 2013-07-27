@@ -1,0 +1,51 @@
+# python2.7.5
+sudo apt-get install build-essential
+sudo apt-get install libreadline-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+cd ~/Downloads/
+wget http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz
+tar -xvf Python-2.7.5.tgz
+cd Python-2.7.5
+./configure
+make
+sudo make install
+
+# php5 apache2
+sudo apt-get install apache2
+sudo apt-get install php5
+sudo apt-get install libapache2-mod-php5
+sudo /etc/init.d/apache2 restart
+
+#sql with password for MySQL root user as 'password123'
+# https://help.ubuntu.com/lts/serverguide/mysql.html
+sudo apt-get update
+sudo apt-get dist-upgrade
+sudo apt-get install mysql-server mysql-client
+sudo mysqladmin -u root -h localhost password 'mypassword'
+sudo mysqladmin -u root -h myhostname password 'mypassword'
+
+
+# ruby on rails, and assorted sql libraries
+# http://ryanbigg.com/2010/12/ubuntu-ruby-rvm-rails-and-you/
+sudo apt-get install curl
+curl -L get.rvm.io | bash -s stable --auto
+. ~/.bash_profile
+sudo apt-get install build-essential openssl libreadline6 libreadline6-dev \
+curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 \
+libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison  \
+subversion pkg-config 
+sudo apt-get install pkgconfig
+rvm install 1.9.3
+rvm use 1.9.3
+ruby -v
+rvm --default use 1.9.3-p327
+gem install rails -v 3.2.9
+
+# nodejs
+sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs nodejs-dev npm
+
+# java (OpenJDK)
+sudo apt-get install openjdk-7-jdk icedtea-7-plugin
+
